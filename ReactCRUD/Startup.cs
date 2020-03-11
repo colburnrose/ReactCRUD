@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using React.AspNet;
 using ReactCRUD.Data;
 
 namespace ReactCRUD
@@ -24,6 +25,7 @@ namespace ReactCRUD
         {
 
             services.AddControllersWithViews();
+            services.AddReact();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // In production, the React files will be served from this directory

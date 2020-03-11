@@ -10,8 +10,8 @@ namespace ReactCRUDAPP.Interface
     {
         Employee GetById(int id);
         IEnumerable<Employee> GetAllEmployees();
-        Task CreateEmployeeAsync(Employee employee);
-        Task UpdateEmployeeAsync(Employee employee);
-        Task DeleteEmployee(int id);
+        int CreateEmployeeAsync(Employee employee);
+        int UpdateEmployeeAsync(Employee employee);
+        int DeleteById(int id);
     }
 }
