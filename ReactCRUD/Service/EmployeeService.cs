@@ -11,22 +11,45 @@ namespace ReactCRUDAPP.Service
     public class EmployeeService : IEmployee
     {
         private readonly ApplicationDbContext _db;
-        public async Task CreateEmployeeAsync(Employee employee)
+        public int CreateEmployeeAsync(Employee employee)
         {
-            _db.Employees.Add(employee);
-            await _db.SaveChangesAsync();
+            try
+            {
+                _db.Employees.Add(employee);
+                _db.SaveChanges();
+                return 1;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public async Task DeleteEmployee(int id)
+        public int DeleteById(int id)
         {
-            var emp = GetById(id);
-            _db.Employees.Remove(emp);
-            await _db.SaveChangesAsync();
+            try
+            {
+                var emp = GetById(id);
+                _db.Employees.Remove(emp);
+                _db.SaveChanges();
+                return 1;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public IEnumerable<Employee> GetAllEmployees()
         {
-            return _db.Employees.ToList();
+            try
+            {
+                return _db.Employees.ToList();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public Employee GetById(int id)
@@ -34,10 +57,18 @@ namespace ReactCRUDAPP.Service
             return _db.Employees.Where(x => x.Id == id).FirstOrDefault();        
         }
 
-        public async Task UpdateEmployeeAsync(Employee employee)
+        public int UpdateEmployeeAsync(Employee employee)
         {
-            _db.Employees.Update(employee);
-            await _db.SaveChangesAsync();
+            try
+            {
+                _db.Employees.Update(employee);
+                _db.SaveChanges();
+                return 1;
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }
